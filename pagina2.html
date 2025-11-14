@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Turismo - Página simple</title>
+	<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+	<header role="banner">
+		<nav class="nav">
+
+        <a class="boton" href="index.html" aria-label="Inicio">Inicio</a>
+
+
+			<button class="boton" aria-label="Buscar">Buscar</button>
+		</nav>
+	</header>
+
+	<main>
+
+			<section id="hero" style="margin-top:24px;">
+			<h2 id="titulo">Descubre lugares inolvidables</h2>
+			<img id="foto" src="collage.jpg" alt="Collage de destinos">
+
+			<p id="texto">Cada pais tiene su propia forma de celebrar la vida. Las costumbres, la musica, la comida y los colores nos muestran la diversidad y riqueza cultural que podemos explorar.</p>
+			<div class="botones">
+			<button id="ocultartexto" class="boton" onclick="ocultarTexto()">Ocultar texto</button>
+			<button id="ocultarFoto" class="boton" onclick="ocultarFoto()">Ocultar foto</button>
+			<button id="mostrarTodo" class="boton" onclick="mostrarTodo()">Mostrar todo</button>
+			<button class="boton" href="pagina2.html">Quiero saber más</button>
+	</div>
+		</section>
+		<script>
+			const titulo = document.getElementById('titulo');
+			const texto = document.getElementById('texto');
+			const foto = document.getElementById('foto');
+			function ocultarTexto() {
+				if (texto) texto.style.display = 'none';
+			}
+			function ocultarFoto() {
+				if (foto) foto.style.display = 'none';
+			}
+			function mostrarTodo() {
+				if (texto) texto.style.display = 'block';
+				if (foto) foto.style.display = 'block';
+				if (titulo) titulo.style.display = 'block';
+			}
+
+		</script>
+		<section class="three-col-section" aria-label="Destacados">
+			<div class="three-col">
+				<article class="lista" tabindex="0">
+					<h3>Playas y costas</h3>
+					<p>Disfruta de playas de arena blanca, actividades acuáticas y atardeceres inolvidables. Rutas recomendadas y alojamientos cercanos.</p>
+				</article>
+
+				<article class="lista" tabindex="0">
+					<h3>Montañas y senderos</h3>
+					<p>Explora senderos, miradores y pequeños pueblos con sabores locales. Consejos para rutas de un día y escapadas de fin de semana.</p>
+				</article>
+
+				<article class="lista" tabindex="0">
+					<h3>Ciudades y cultura</h3>
+					<p>Descubre centros históricos, museos y mercados. Itinerarios culturales para saborear la gastronomía y tradición local.</p>
+				</article>
+			</div>
+		</section>
+
+	<footer>
+		<p>2025 la mejor pagina de Turismo </p>
+	</footer>
+</body>
+</html>
