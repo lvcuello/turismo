@@ -4,111 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Todas las imágenes tendrán el mismo tamaño, ahora aún más grande */
+        img {
+            width: 1000px;
+            height: auto;
+            transition: width 0.3s;
+        }
+        /* Si quieres mantener el efecto de agrandar para Italia, puedes ajustar .imagen-grande aquí */
+        /* .imagen-grande {
+            width: 400px !important;
+            height: auto !important;
+        } */
+    </style>
 </head>
-<body>
+<body id="fondo">
+    <div class="color-buttons" aria-label="Botones para cambiar el color de fondo">
+        <button class="flag-button" id="cambioamarillo" onclick="amarillo()">Brasil</button>
+        <button  class="flag-button" id="cambioceleste" onclick="celeste()">Argentina</button>
+        <button  class="flag-button" id="cambiorojo" onclick="rojo()">Estados Unidos</button>
+        <button  class="flag-button" id="cambioverde" onclick="verde()">Italia</button>
+        <button  class="flag-button" id="cambioazul" onclick="azul()">Francia</button>
+    </div>
+    <div class="hero">
+        <h1>
+            Explora distintos destinos
+        </h1>
+        <h3>
+            Selecciona un pais para descubrir su belleza
+        </h3>
+    </div>
 
-            <div class="botones">
-        <button class="boton">Inicio</button>
-        <button class="boton">Explora</button>
-        <a class="boton" href="pagina2.html">Blog</a>
+    <!-- Sección: 3 botones nuevos que muestran un texto al pulsarlos -->
+    <section class="botones-nuevos" aria-label="Botones con texto">
+        <div class="text-buttons">
+            <button class="text-button" id="nuevo1" type="button">Nuevo 1</button>
+            <button class="text-button" id="nuevo2" type="button">Nuevo 2</button>
+            <button class="text-button" id="nuevo3" type="button">Nuevo 3</button>
         </div>
-</div>
-    <div class="flex">
-    <div class="imagen">
-        <img src="img/turismo1.jpg" alt="">
-    </div>
-    <div class="textos">
-    <div class="titulo"><h2>Descubrí el mundo con nosotros</h2></div>
-    <div id="texto1" onclick="otrotexto()"><p> El mundo está lleno de lugares increíbles esperando a ser explorados</p></div> 
-    <div><button class="boton2" href="pagina2.html">Quiero saber más...</button></div> 
-</div>   
-    <div class="imagen">
-        <img src="img/turismo2.jpg" alt="">
-    </div>
-</div>
- <script>
-document.addEventListener('DOMContentLoaded', function () {
+        <div id="outputNuevo" role="region" aria-live="polite" class="output">Pulsa uno de los botones para ver su texto.</div>
+    </section>
+    <img id="imagenes" src="img/BRASIL.jpeg" alt="">
+    <script>
+        // --- Funciones de cambio de color existentes ---
+        let cambiodefondo = document.getElementById("fondo");
+        let cambiodeimagen = document.getElementById("imagenes");
 
-  const cambio = document.getElementById("texto1");
-  window.otrotexto = function(){
-    if (cambio) cambio.innerHTML = " Anímate a viajar y vivir nuevas experiencias!";
-  };
+        // Helper: quitar clase .flag-large de todos los botones de bandera
+        function clearFlagLarge() {
+            document.querySelectorAll('.flag-button').forEach(btn => btn.classList.remove('flag-large'));
+        }
+
+        function azul(){
+            clearFlagLarge();
+            cambiodefondo.style.backgroundColor = "blue";
+            cambiodeimagen.src="img/francia.avif";
+            cambiodeimagen.classList.remove('imagen-grande');
+        }
+        function amarillo(){
+            clearFlagLarge();
+            cambiodefondo.style.backgroundColor = "yellow";
+            cambiodeimagen.src="img/BRASIL.jpeg";
+            cambiodeimagen.classList.remove('imagen-grande');
+        }
+        function rojo(){
+            clearFlagLarge();
+            cambiodefondo.style.backgroundColor = "red";
+            cambiodeimagen.src="img/estatua.jpg";
+            cambiodeimagen.classList.remove('imagen-grande');
+        }
+        function verde(){
+            // Agrandar el botón de Italia y la imagen principal
+            clearFlagLarge();
+            document.getElementById('cambioverde').classList.add('flag-large');
+            cambiodefondo.style.backgroundColor = "green";
+            cambiodeimagen.src="img/images.jfif";
+            cambiodeimagen.classList.add('imagen-grande');
+        }
+        function celeste(){
+            clearFlagLarge();
+            cambiodefondo.style.backgroundColor = "lightblue";
+            cambiodeimagen.src="img/iguazu.jpg";
+            cambiodeimagen.classList.remove('imagen-grande');
+        }
 
 
-  const accordion = document.getElementById('accordionImages');
-  if (accordion) {
-    accordion.querySelectorAll('.accordion-toggle').forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const item = toggle.parentElement;
-        const panel = item.querySelector('.accordion-panel');
-        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        const outputNuevo = document.getElementById('outputNuevo');
+        const mensajesNuevo = {
+            nuevo1: 'Texto del botón nuevo 1: descubre playas y sol.',
+            nuevo2: 'Texto del botón nuevo 2: explora museos y cultura local.',
+            nuevo3: 'Texto del botón nuevo 3: vive la aventura al aire libre.'
+        };
 
-
-        accordion.querySelectorAll('.accordion-item').forEach(i => {
-          const t = i.querySelector('.accordion-toggle');
-          const p = i.querySelector('.accordion-panel');
-          if (t && p) {
-            t.setAttribute('aria-expanded', 'false');
-            p.setAttribute('aria-hidden', 'true');
-            p.style.maxHeight = null;
-          }
+        document.getElementById('nuevo1').addEventListener('click', () => {
+            outputNuevo.textContent = mensajesNuevo.nuevo1;
         });
-
-  
-        if (!isOpen && panel) {
-          toggle.setAttribute('aria-expanded', 'true');
-          panel.setAttribute('aria-hidden', 'false');
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-        }
-      });
-    });
-
-
-    accordion.querySelectorAll('.accordion-panel img').forEach(img => {
-      img.style.transition = img.style.transition || 'transform 220ms ease, opacity 220ms ease';
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', function () {
-        if (this.classList.contains('zoomed')) {
-          this.classList.remove('zoomed');
-          this.classList.add('shrunk');
-        } else if (this.classList.contains('shrunk')) {
-          this.classList.remove('shrunk');
-        } else {
-          this.classList.add('zoomed');
-        }
-      });
-    });
-  }
-});
-</script>
-
-
-<section class="accordion" id="accordionImages" aria-label="Galería de imágenes">
-  <div class="accordion-item">
-    <button class="accordion-toggle" aria-expanded="false">Obelisco - Día</button>
-    <div class="accordion-panel" aria-hidden="true">
-      <img src="acordeon1.jpeg" alt="Obelisco - dia"weight="50">
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <button class="accordion-toggle" aria-expanded="false">Obelisco - Noche</button>
-    <div class="accordion-panel" aria-hidden="true">
-      <img src="acordeon2.jpeg" alt="Obelisco - noche"weight="50">
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <button class="accordion-toggle" aria-expanded="false">Obelisco - Primavera</button>
-    <div class="accordion-panel" aria-hidden="true">
-      <img src="acordeon3.jpeg" alt="Obelisco - primavera" weight="50">
-    </div>
-  </div>
-</section>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+        document.getElementById('nuevo2').addEventListener('click', () => {
+            outputNuevo.textContent = mensajesNuevo.nuevo2;
+        });
+        document.getElementById('nuevo3').addEventListener('click', () => {
+            outputNuevo.textContent = mensajesNuevo.nuevo3;
+        });
+    </script>
 
 </body>
 </html>
