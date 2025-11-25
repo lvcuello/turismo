@@ -18,6 +18,9 @@
         } */
     </style>
 </head>
+<nav>
+    <a href="index.html">inicio</a>
+</nav>
 <body id="fondo">
     <div class="color-buttons" aria-label="Botones para cambiar el color de fondo">
         <button class="flag-button" id="cambioamarillo" onclick="amarillo()">Brasil</button>
@@ -38,13 +41,13 @@
     <!-- Sección: 3 botones nuevos que muestran un texto al pulsarlos -->
     <section class="botones-nuevos" aria-label="Botones con texto">
         <div class="text-buttons">
-            <button class="text-button" id="nuevo1" type="button">Nuevo 1</button>
-            <button class="text-button" id="nuevo2" type="button">Nuevo 2</button>
-            <button class="text-button" id="nuevo3" type="button">Nuevo 3</button>
+            <button class="text-button" id="nuevo1" type="button">Texto 1</button>
+            <button class="text-button" id="nuevo2" type="button">Texto 2</button>
+            <button class="text-button" id="nuevo3" type="button">Texto 3</button>
         </div>
         <div id="outputNuevo" role="region" aria-live="polite" class="output">Pulsa uno de los botones para ver su texto.</div>
     </section>
-    <img id="imagenes" src="img/BRASIL.jpeg" alt="">
+     <img id="imagenes" src="img/BRASIL.jpeg" alt="">
     <script>
         // --- Funciones de cambio de color existentes ---
         let cambiodefondo = document.getElementById("fondo");
@@ -91,9 +94,9 @@
 
         const outputNuevo = document.getElementById('outputNuevo');
         const mensajesNuevo = {
-            nuevo1: 'Texto del botón nuevo 1: descubre playas y sol.',
-            nuevo2: 'Texto del botón nuevo 2: explora museos y cultura local.',
-            nuevo3: 'Texto del botón nuevo 3: vive la aventura al aire libre.'
+            nuevo1: 'descubre playas y sol.',
+            nuevo2: 'explora museos y cultura local.',
+            nuevo3: 'vive la aventura al aire libre.'
         };
 
         document.getElementById('nuevo1').addEventListener('click', () => {
